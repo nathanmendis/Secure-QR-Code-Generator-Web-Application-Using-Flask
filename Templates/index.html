@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypt URL and Generate QR Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: rgb(11,255,255);
+background: radial-gradient(circle, rgba(11,255,255,1) 0%, rgba(62,82,193,1) 0%, rgba(65,63,206,1) 65%, rgba(173,169,255,1) 100%, rgba(76,110,216,1) 100%);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            margin-top: 50px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            width: 250px;
+            height: 250px;
+        }
+
+        .download-btn, .decrypt-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #2196F3;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .download-btn:hover, .decrypt-link:hover {
+            background-color: #0b7dda;
+        }
+
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Encrypt a URL and Generate QR Code</h1>
+        <form method="POST" action="/">
+            <label for="link">Enter URL:</label>
+            <input type="text" id="link" name="link" required>
+            <button type="submit">Encrypt and Generate QR Code</button>
+        </form>
+
+        {% if encrypted_link %}
+        <!-- <h2>Encrypted Link: {{ encrypted_link }}</h2> -->
+        
+        <h3>Encryption Key (Store it safely): {{ key }}</h3>
+        {% endif %}
+        {% if qr_file %}
+        <img src="{{ qr_file }}" alt="QR Code">
+        <a href="{{ url_for('download_qr') }}" class="download-btn">Download QR Code</a>
+        {% endif %}
+
+        <a href="/decrypt" class="decrypt-link">Go to Decrypt Page</a>
+    </div>
+</body>
+</html>

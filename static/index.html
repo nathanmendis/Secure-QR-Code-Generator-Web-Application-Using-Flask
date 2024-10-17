@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypt URL and Generate QR Code</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Encrypt a URL and Generate QR Code</h1>
+        <form method="POST" action="/">
+            <label for="link">Enter URL:</label>
+            <input type="text" id="link" name="link" required>
+            <button type="submit">Encrypt and Generate QR Code</button>
+        </form>
+
+        {% if encrypted_link %}
+        <h2>Encrypted Link: {{ encrypted_link }}</h2>
+        <h3>Encryption Key (Store it safely): {{ key }}</h3>
+        <img src="/download/{{ qr_file }}" alt="QR Code">
+        <br>
+        <a href="/download/{{ qr_file }}" class="download-btn">Download QR Code</a>
+        {% endif %}
+
+        <a href="/decrypt" class="decrypt-link">Go to Decrypt Page</a>
+    </div>
+</body>
+</html>

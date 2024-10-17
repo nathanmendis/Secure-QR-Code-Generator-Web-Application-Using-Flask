@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decrypt QR Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: rgb(11,255,255);
+background: radial-gradient(circle, rgba(11,255,255,1) 0%, rgba(62,82,193,1) 0%, rgba(65,63,206,1) 65%, rgba(173,169,255,1) 100%, rgba(76,110,216,1) 100%);
+            color:black;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            margin-top: 50px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="file"] {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Decrypt a QR Code</h1>
+        <form method="POST" enctype="multipart/form-data" action="/decrypt">
+            <label for="qr_code">Upload QR Code:</label>
+            <input type="file" id="qr_code" name="qr_code" required>
+            <br>
+            <label for="key">Enter Encryption Key:</label>
+            <input type="text" id="key" name="key" required>
+            <br>
+            <button type="submit">Decrypt</button>
+        </form>
+
+        {% if decrypted_link %}
+        <h2>Decrypted Link: <a href="{{ decrypted_link }}" target="_blank">{{ decrypted_link }}</a></h2>
+        {% endif %}
+
+        {% if error %}
+        <p>{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
