@@ -74,6 +74,4 @@ This is a Flask-based web application that allows users to encrypt a URL, genera
 - Always use **HTTPS** when deploying to production to ensure secure transmission of keys and data.
 - Implement limits on file uploads to avoid potential abuse.
 
-## License
 
-This project is licensed under the MIT License.
